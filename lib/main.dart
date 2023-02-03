@@ -18,41 +18,50 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         body: Center(
-          child: _buildImageColumn(),
+          child: _buildCard(),
         ),
       ),
     );
   }
 }
 
-Widget _buildImageColumn() {
-  return Container(
-    decoration: const BoxDecoration(
-      color: Colors.black26,
-    ),
-    child: Column(
-      children: [
-        _buildImageRow(1),
-        _buildImageRow(3),
-      ],
+Widget _buildCard() {
+  return SizedBox(
+    height: 210,
+    child: Card(
+      child: Column(
+        children: [
+          ListTile(
+            title: const Text(
+              '1625 Main Street',
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+            subtitle: const Text('My City, CA 99984'),
+            leading: Icon(
+              Icons.restaurant_menu,
+              color: Colors.blue[500],
+            ),
+          ),
+          const Divider(),
+          ListTile(
+            title: const Text(
+              '(408) 555-1212',
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+            leading: Icon(
+              Icons.contact_phone,
+              color: Colors.blue[500],
+            ),
+          ),
+          ListTile(
+            title: const Text('costa@example.com'),
+            leading: Icon(
+              Icons.contact_mail,
+              color: Colors.blue[500],
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }
-
-Widget _buildImageRow(int imageIndex) => Row(
-      children: [
-        _buildDecoratedImage(imageIndex),
-        _buildDecoratedImage(imageIndex + 1),
-      ],
-    );
-
-Widget _buildDecoratedImage(int imageIndex) => Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(width: 10, color: Colors.black38),
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-        ),
-        margin: const EdgeInsets.all(4),
-        child: Image.asset('images/pic$imageIndex.jpg'),
-      ),
-    );
